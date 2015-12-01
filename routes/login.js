@@ -24,7 +24,7 @@ router.post('/',function(req,res){
 		else
 			{
 				
-				var token = jwt.sign(user._id.username,"karthic",{
+				var token = jwt.sign(user._id,"karthic",{
 					expiresIn:"365d"
 				});
 				
