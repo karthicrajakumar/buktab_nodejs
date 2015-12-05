@@ -10,9 +10,11 @@ router.post('/', function(req,res) {
 
 	});
 	user.save(function(err){
-		if(err) throw err;
+		if(err) {
+			return res.json({success: false, message:"Error" });
+		}
 		console.log('User Saved Successfully');
-		res.json({success: true });
+		return res.json({success: true });
 	});
 
 });
