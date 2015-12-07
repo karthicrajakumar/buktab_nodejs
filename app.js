@@ -14,6 +14,7 @@ var TokenStrategy = require('passport-accesstoken').Strategy;
 var users = require('./routes/users');
 var saves = require ('./routes/save');
 var login = require('./routes/login');
+var validate = require('./routes/validate');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -33,6 +34,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/save',saves);
 app.use('/login',login);
+app.use('/validate',validate)
 function authenticate(req,res,next){
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -62,13 +64,6 @@ function authenticate(req,res,next){
     
   }
 };
-
-app.get('/animals',authenticate, function (req, res) {
-    // User authenticated and can be found in req.user
-    res.json({success:true, user:req.decoded});
-});
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
