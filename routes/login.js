@@ -12,6 +12,7 @@ router.post('/',function(req,res){
 	//});
 	var sent = false;
 	User.findOne({username: req.body.username}, function(err,user){
+			try{
 		if(err) {
 			return res.json({success:false , message: "Error"});
 		}
@@ -19,7 +20,7 @@ router.post('/',function(req,res){
 			return res.json({success:false , message: "Authentication Failed, User not Found"});
 			sent = true;
 		}
-		try{
+	
 			user.comparePassword(req.body.password, function(err,isMatch){
 				if(err) {
 					return res.json({success:false , message: err});
