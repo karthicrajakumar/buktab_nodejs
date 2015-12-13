@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-//var User = require('../app/models/user');
+var User = require('../app/models/user');
 var Post = require('../app/models/post');
-//var Book = require('../app/models/book');
+var Book = require('../app/models/book');
 
 
 
@@ -22,6 +22,8 @@ router.post('/',function(req,res){
 		lat:req.body.lat,
 		long:req.body.long
 	});
+	//post.populate('bookDetails').execPopulate();
+	
 
 	post.save(function(err){
 		if(err)
@@ -29,8 +31,19 @@ router.post('/',function(req,res){
 			return res.json({success:false,message:"Error"});
 			console.log(err);
 		}
-		return res.json({success:true,message:"Posted Successfully"})
+		Book.findById(bookid,function(err,book){
+			post.set({bookDetails: book}); 
+			post.populate('bookDetails').save();
+		
+	})		
+		User.findById(userid,function(err,user){
+			post.set({_creator:{username: user.username,email:user.email,phoneNo : user.phoneNo}})
+			post.populate('_creator').save();
+			
+		})
+		return res.json({success:true,message:"Posted Successfully",post:post})
 	})
+
 
 });
 

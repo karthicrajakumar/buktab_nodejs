@@ -17,6 +17,7 @@ var login = require('./routes/login');
 var validate = require('./routes/validate');
 var addBook = require('./routes/addBook');
 var listforAdd = require('./routes/listforAdd');
+var getPost = require('./routes/getPosts');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -69,6 +70,7 @@ function authenticate(req,res,next){
 };
 app.use('/postBook',authenticate,addBook);
 app.use('/listBooksForAdd',authenticate,listforAdd);
+app.use('/getAds',authenticate,getPost);
 
 
 
