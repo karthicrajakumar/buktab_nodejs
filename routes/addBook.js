@@ -37,8 +37,14 @@ router.post('/',function(req,res){
 		
 	})		
 		User.findById(userid,function(err,user){
+			if(err)
+			{
+				return res.json({success:false,message:"Error"});
+			}
+			else{
 			post.set({_creator:{username: user.username,email:user.email,phoneNo : user.phoneNo}})
 			post.populate('_creator').save();
+			}
 			
 		})
 		return res.json({success:true,message:"Posted Successfully",post:post})
