@@ -41,7 +41,7 @@ router.post('/',function(req,res){
 			{
 				return res.json({success:false,message:"Error"});
 			}
-			else if(user.length!= 0){
+			else if(user != null){
 
 				post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email}});
 				post.save();
