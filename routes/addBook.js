@@ -30,7 +30,7 @@ router.post('/',function(req,res){
 		{
 			return res.json({success:false,message:"Error"});
 			console.log(err);
-		}
+		}else{
 		Book.findById(bookid,function(err,book){
 			post.set({bookDetails: book});
 			post.populate('bookDetails').save();
@@ -51,7 +51,9 @@ router.post('/',function(req,res){
 			}
 
 		})
-		return res.json({success:true,message:"Posted Successfully",post:post})
+
+			return res.json({success:true,message:"Posted Successfully",post:post})
+		}
 	})
 
 
