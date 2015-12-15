@@ -8,7 +8,7 @@ var mongoose  = require('mongoose');
 var passport = require('passport');
 mongoose.connect('mongodb://localhost:27017/buktab');
 var routes = require('./routes/index');
-var jwt    = require('jsonwebtoken'); 
+var jwt    = require('jsonwebtoken');
 var User = require('./app/models/user');
 var TokenStrategy = require('passport-accesstoken').Strategy;
 var users = require('./routes/users');
@@ -47,12 +47,12 @@ function authenticate(req,res,next){
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token,"karthic", function(err, decoded) {      
+    jwt.verify(token,"karthic", function(err, decoded) {
       if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
         // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
+        req.decoded = decoded;
         next();
       }
     });
@@ -61,16 +61,17 @@ function authenticate(req,res,next){
 
     // if there is no token
     // return an error
-    return res.status(403).send({ 
-        success: false, 
-        message: 'No token provided.' 
+    return res.status(403).send({
+        success: false,
+        message: 'No token provided.'
     });
-    
+
   }
 };
 app.use('/postBook',authenticate,addBook);
 app.use('/listBooksForAdd',authenticate,listforAdd);
-app.use('/getAds',authenticate,getPost);
+app.use('/getAds', authenticate,getPost);
+
 
 
 
