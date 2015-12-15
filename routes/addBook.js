@@ -41,9 +41,13 @@ router.post('/',function(req,res){
 			{
 				return res.json({success:false,message:"Error"});
 			}
-			else{
-			post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email}});
-			post.save();
+			else if(user.length!= 0){
+
+				post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email}});
+				post.save();
+			}
+			else {
+				return res.json({success:false,message:"Error"});
 			}
 
 		})
