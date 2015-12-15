@@ -23,7 +23,7 @@ router.post('/',function(req,res){
 		long:req.body.long
 	});
 	//post.populate('bookDetails').execPopulate();
-	
+
 
 	post.save(function(err){
 		if(err)
@@ -32,20 +32,20 @@ router.post('/',function(req,res){
 			console.log(err);
 		}
 		Book.findById(bookid,function(err,book){
-			post.set({bookDetails: book}); 
+			post.set({bookDetails: book});
 			post.populate('bookDetails').save();
-		
-	})		
+
+	})
 		User.findById(userid,function(err,user){
 			if(err)
 			{
 				return res.json({success:false,message:"Error"});
 			}
 			else{
-			post.set({_creator:{username: user.username,email:user.email,phoneNo : user.phoneNo}})
-			post.populate('_creator').save();
+			post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email}});
+			post.save();
 			}
-			
+
 		})
 		return res.json({success:true,message:"Posted Successfully",post:post})
 	})
