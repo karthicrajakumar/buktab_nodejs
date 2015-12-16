@@ -19,8 +19,8 @@ router.post('/',function(req,res){
 		Price:price,
 		bookDetails:bookid,
 		_creator:userid,
-		lat:req.body.lat,
-		long:req.body.long
+		lat:parseInt(req.body.lat,10),
+		long:parseInt(req.body.long,10)
 	});
 	//post.populate('bookDetails').execPopulate();
 
