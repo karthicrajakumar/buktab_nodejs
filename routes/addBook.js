@@ -12,15 +12,16 @@ router.post('/',function(req,res){
 	var price = parseInt(req.body.price,10);
 	var sem  = parseInt(req.body.sem,10);
 	var bookid = req.body.bookid;
-
+	var lat =parseInt(req.body.lat,10);
+	var long = parseInt(req.body.long,10);
 
 	var post = new Post({
 		Semester:sem,
 		Price:price,
 		bookDetails:bookid,
 		_creator:userid,
-		lat:parseInt(req.body.lat,10),
-		long:parseInt(req.body.long,10)
+		lat:lat,
+		long:long
 	});
 	//post.populate('bookDetails').execPopulate();
 
