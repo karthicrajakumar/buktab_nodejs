@@ -9,8 +9,8 @@ var Book = require('../app/models/book');
 
 router.post('/',function(req,res){
 	var userid = req.decoded;
-	var price = req.body.price;
-	var sem  = req.body.sem;
+	var price = parseInt(req.body.price,10);
+	var sem  = parseInt(req.body.sem,10);
 	var bookid = req.body.bookid;
 
 
