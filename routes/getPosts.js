@@ -48,7 +48,7 @@ router.get('/byPrice/:price',function(req,res){
 });
 router.get('/byName/:name',function(req,res){
 	var name = req.params.name;
-	Post.find({$or:[{"bookDetails.Name":new RegExp(name,'i')},{"bookDetails.Author":new RegExp(name,'i')},{"bookDetails.Publisher":new RegExp(name,'i')}]},function(err,docs){
+	Post.find({$or:[{"bookDetails.Name":new RegExp(name,'i')},{"bookDetails.Author":new RegExp(name,'i')},{"bookDetails.Publisher":new RegExp(name,'i')}]},null,{sort:{Price:1}},function(err,docs){
 		if(err)
 		{
 			return res.json({success:false,message:"Unknown Error"})
@@ -84,4 +84,24 @@ router.get('/byDept/:dept',function(req,res){
 		}
 	});
 });
+
+router.get('/byDeptAndSem/',function(req,res){
+	var dept  = req.query.dept;
+	var sem = req.query.sem;
+	Post.find({"bookDetails.Department": new RegExp(dept,'i'),"Semester":sem},function(err,docs){
+		if(err)
+		{
+			return res.json({success:false,message:"Unknown Error"})
+		}
+		else if(docs.length == 0)
+		{
+			return res.json({success:true,message:"No Books match your Search Condition"});
+		}
+		else
+		{
+			return res.json({success:true,result:docs});
+
+		}
+	})
+})
 module.exports = router;
