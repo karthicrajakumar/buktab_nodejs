@@ -18,6 +18,7 @@ var validate = require('./routes/validate');
 var addBook = require('./routes/addBook');
 var listforAdd = require('./routes/listforAdd');
 var getPost = require('./routes/getPosts');
+var manageBooks= require('./routes/manageBooks');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -38,6 +39,7 @@ app.use('/users', users);
 app.use('/save',saves);
 app.use('/login',login);
 app.use('/validate',validate);
+
 
 function authenticate(req,res,next){
   // check header or url parameters or post parameters for token
@@ -71,7 +73,7 @@ function authenticate(req,res,next){
 app.use('/postBook',authenticate,addBook);
 app.use('/listBooksForAdd',authenticate,listforAdd);
 app.use('/getAds', authenticate,getPost);
-
+app.use('/manageBooks',authenticate,manageBooks);
 
 
 

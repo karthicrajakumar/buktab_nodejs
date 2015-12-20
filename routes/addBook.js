@@ -9,11 +9,11 @@ var Book = require('../app/models/book');
 
 router.post('/',function(req,res){
 	var userid = req.decoded;
-	var price = parseInt(req.body.price,10);
-	var sem  = parseInt(req.body.sem,10);
+	var price = parseInt(req.body.price);
+	var sem  = parseInt(req.body.sem);
 	var bookid = req.body.bookid;
-	var lat =parseInt(req.body.lat,10);
-	var long = parseInt(req.body.long,10);
+	var lat =parseFloat(req.body.lat);
+	var long = parseFloat(req.body.long);
 
 	var post = new Post({
 		Semester:sem,
@@ -29,7 +29,7 @@ router.post('/',function(req,res){
 	post.save(function(err){
 		if(err)
 		{
-			return res.json({success:false,message:"Error"});
+			return res.json({success:false,message:err});
 			console.log(err);
 		}
 		Book.findById(bookid,function(err,book){
