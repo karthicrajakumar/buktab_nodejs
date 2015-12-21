@@ -40,21 +40,17 @@ router.post('/',function(req,res){
 					user.save(function(err){
 						if(err) {
 							return res.json({success:false , message: "Could not save User"});
-					}
+						}else {
+							return res.json({
+				          success: true,
+				          message: 'Successfully Logged in ',
+				          token: token
+								});
+						};
 					});
-					return res.json({
-			          success: true,
-			          message: 'Successfully Logged in ',
-			          token: token
-	        });
-
-				}
-
-			});
-
-
+			};
+		});
 	});
-
 });
 
 module.exports = router;
