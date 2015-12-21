@@ -39,7 +39,7 @@ router.post('/',function(req,res){
 					user.token = token;
 					user.save(function(err){
 						if(err) {
-							return res.json({success:false , message: "Could not save User"});
+							return res.json({success:false , message: err});
 						}else {
 							return res.json({
 				          success: true,
