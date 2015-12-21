@@ -36,10 +36,10 @@ router.post('/',function(req,res){
 						expiresIn:"365d"
 					});
 
-					user.token = token;
-					user.save(function(err){
+					
+					user.update({token:token},function(err){
 						if(err) {
-							return res.json({success:false , message: err});
+							return res.json({success:false , message: "Could Not Save User"});
 						}else {
 							return res.json({
 				          success: true,
