@@ -3,6 +3,8 @@ var mongoose = require('mongoose'),
 var User = require('./user');
 var Book = require('./book');
 
+var soft_delete = require('mongoose-softdelete');
+
 
 var PostSchema = new Schema({
 
@@ -16,6 +18,7 @@ var PostSchema = new Schema({
 
 
 });
+PostSchema.plugin(soft_delete);
 module.exports = mongoose.model('Post',PostSchema);
 
 var Post = mongoose.model('Post');

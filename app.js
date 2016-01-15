@@ -19,6 +19,7 @@ var addBook = require('./routes/addBook');
 var listforAdd = require('./routes/listforAdd');
 var getPost = require('./routes/getPosts');
 var manageBooks= require('./routes/manageBooks');
+var deletePost = require('./routes/deletePost')
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -74,6 +75,7 @@ app.use('/postBook',authenticate,addBook);
 app.use('/listBooksForAdd',authenticate,listforAdd);
 app.use('/getAds', authenticate,getPost);
 app.use('/manageBooks',authenticate,manageBooks);
+app.use('/delete',authenticate,deletePost)
 
 
 
