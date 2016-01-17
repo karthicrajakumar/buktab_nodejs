@@ -14,9 +14,19 @@ var PostSchema = new Schema({
 	_creator: [{ type: Schema.Types.Mixed, ref:'User',required:true}],
 	lat:{type:Number},
 	long:{type:Number},
+  created_at    : { type: Date },
+  updated_at    : { type: Date }
 
 
 
+});
+PostSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+  next();
 });
 PostSchema.plugin(soft_delete);
 module.exports = mongoose.model('Post',PostSchema);

@@ -5,15 +5,16 @@ var Post = require('../app/models/post');
 var Book = require('../app/models/book');
 
 
+
 router.get('/',function(req,res){
-	Post.find(function(err,docs){
+	Post.find({},null,{sort:{updated_at:-1}},function(err,docs){
 		return res.json({success:true,result:docs});
 	})
 });
 
 router.get('/bySem/:sem',function(req,res){
 	var sem = req.params.sem;
-	Post.find({Semester:sem,deleted:null},function(err,docs){
+	Post.find({Semester:sem,deleted:null},null,{sort:{updated_at:-1}},function(err,docs){
 		if(err)
 			return res.json({success:false,message:"Unknown Error"})
 		else {
@@ -30,7 +31,7 @@ router.get('/bySem/:sem',function(req,res){
 
 router.get('/byPrice/:price',function(req,res){
 	var price = req.params.price;
-	Post.find({Price:{$lte: price},deleted:null},function(err,docs){
+	Post.find({Price:{$lte: price},deleted:null},null,{sort:{updated_at:-1}},function(err,docs){
 				if(err)
 				{
 					return res.json({success:false,message:"Unknown Error"})
@@ -48,7 +49,7 @@ router.get('/byPrice/:price',function(req,res){
 });
 router.get('/byName/:name',function(req,res){
 	var name = req.params.name;
-	Post.find({$or:[{"bookDetails.Name":new RegExp(name,'i')},{"bookDetails.Author":new RegExp(name,'i')},{"bookDetails.Publisher":new RegExp(name,'i')}],deleted:null},null,{sort:{Price:1}},function(err,docs){
+	Post.find({$or:[{"bookDetails.Name":new RegExp(name,'i')},{"bookDetails.Author":new RegExp(name,'i')},{"bookDetails.Publisher":new RegExp(name,'i')}],deleted:null},null,{sort:{Price:1,updated_at:-1}},function(err,docs){
 		if(err)
 		{
 			return res.json({success:false,message:"Unknown Error"})
@@ -68,7 +69,7 @@ router.get('/byName/:name',function(req,res){
 
 router.get('/byDept/:dept',function(req,res){
 	var dept = req.params.dept;
-	Post.find({"bookDetails.Department":new RegExp(dept,'i'),deleted:null},function(err,docs){
+	Post.find({"bookDetails.Department":new RegExp(dept,'i'),deleted:null},null,{sort:{updated_at:-1}},function(err,docs){
 		if(err)
 		{
 			return res.json({success:false,message:"Unknown Error"})
@@ -88,7 +89,7 @@ router.get('/byDept/:dept',function(req,res){
 router.get('/byDeptAndSem/',function(req,res){
 	var dept  = req.query.dept;
 	var sem = req.query.sem;
-	Post.find({"bookDetails.Department": new RegExp(dept,'i'),"Semester":sem,deleted:null},function(err,docs){
+	Post.find({"bookDetails.Department": new RegExp(dept,'i'),"Semester":sem,deleted:null},null,{sort:{updated_at:-1}},function(err,docs){
 		if(err)
 		{
 			return res.json({success:false,message:"Unknown Error"})
