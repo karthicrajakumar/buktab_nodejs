@@ -6,7 +6,7 @@ var Book = require('../app/models/book');
 var mongoose = require('mongoose');
 
 
-router.delete('/',function(req,res){
+router.post('/',function(req,res){
   var user_id = req.decoded;
   var post_id = req.body.id;
   Post.findOne({_id:post_id,'_creator.id':mongoose.Types.ObjectId(user_id)},function(err,post){
