@@ -7,8 +7,8 @@ var mongoose = require('mongoose');
 
 router.get('/',function(req,res){
   var user_id = req.decoded;
-  console.log(user_id);
-  Post.find({'_creator.id':mongoose.Types.ObjectId(user_id)},function(err,docs){
+
+  Post.find({'_creator.id':mongoose.Types.ObjectId(user_id),deleted:null},function(err,docs){
     if(err)
     {
       return res.json({success:false,message:"Unknown Error"})
