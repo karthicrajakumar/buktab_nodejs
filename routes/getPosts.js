@@ -19,7 +19,7 @@ router.get('/bySem/:sem',function(req,res){
 			return res.json({success:false,message:"Unknown Error"})
 		else {
 			if(docs.length == 0){
-					return res.json({success:true,message:"No Books match your Search Condition"});
+					return res.json({success:false,message:"No Books match your Search Condition"});
 			}else{
 			return res.json({success:true,result:docs});
 
@@ -38,7 +38,7 @@ router.get('/byPrice/:price',function(req,res){
 				}
 				else if(docs.length == 0)
 				{
-					return res.json({success:true,message:"No Books match your Search Condition"});
+					return res.json({success:false,message:"No Books match your Search Condition"});
 				}
 				else
 				{
@@ -56,7 +56,7 @@ router.get('/byName/:name',function(req,res){
 		}
 		else if(docs.length == 0)
 		{
-			return res.json({success:true,message:"No Books match your Search Condition"});
+			return res.json({success:false,message:"No Books match your Search Condition"});
 		}
 		else
 		{
@@ -76,7 +76,7 @@ router.get('/byDept/:dept',function(req,res){
 		}
 		else if(docs.length == 0)
 		{
-			return res.json({success:true,message:"No Books match your Search Condition"});
+			return res.json({success:false,message:"No Books match your Search Condition"});
 		}
 		else
 		{
@@ -96,7 +96,7 @@ router.get('/byDeptAndSem/',function(req,res){
 		}
 		else if(docs.length == 0)
 		{
-			return res.json({success:true,message:"No Books match your Search Condition"});
+			return res.json({success:false,message:"No Books match your Search Condition"});
 		}
 		else
 		{
