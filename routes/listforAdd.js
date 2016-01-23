@@ -10,7 +10,7 @@ router.get('/',function(req,res){
 		{
 			return res.json({success:false,message:"Error Retrieving Docs"});
 		}
-		else if(docs == null)
+		else if(docs.length==0)
 		{
 			return res.json({success:false,message:"No Books Matching Your Request"});
 		}
