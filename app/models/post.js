@@ -12,8 +12,7 @@ var PostSchema = new Schema({
 	Price: {type: Number, required:true},
 	bookDetails: [{ type: Schema.Types.Mixed, ref:'Book' ,required:true}],
 	_creator: [{ type: Schema.Types.Mixed, ref:'User',required:true}],
-	lat:{type:Number},
-	long:{type:Number},
+  location:{type:String},
   created_at    : { type: Date },
   updated_at    : { type: Date }
 
@@ -28,6 +27,7 @@ PostSchema.pre('save', function(next){
   }
   next();
 });
+
 PostSchema.plugin(soft_delete);
 module.exports = mongoose.model('Post',PostSchema);
 
