@@ -22,6 +22,7 @@ var manageBooks= require('./routes/manageBooks');
 var deletePost = require('./routes/deletePost');
 var updatePost = require('./routes/updatePost');
 var recentPost = require('./routes/recentPost');
+var updateProfile = require('./routes/updateProfile');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -80,7 +81,7 @@ app.use('/manageBooks',authenticate,manageBooks);
 app.use('/delete',authenticate,deletePost);
 app.use('/update',authenticate,updatePost);
 app.use('/recent',authenticate,recentPost);
-
+app.use('/updateProfile',authenticate,updateProfile);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
