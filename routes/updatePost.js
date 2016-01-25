@@ -13,7 +13,9 @@ router.post('/',function(req,res){
   var price = req.body.price;
   Post.findOne({_id:post_id,'_creator.id':mongoose.Types.ObjectId(user_id)},function(err,post){
     if(post){
-    post.update({Price:price,Semester:sem},function(err,newPost){
+    now = new Date();
+
+    post.update({Price:price,Semester:sem,updated_at:now},function(err,newPost){
       if(err)
        return res.json(err);
        return res.json({success:true,message:"Updated Successfully"});

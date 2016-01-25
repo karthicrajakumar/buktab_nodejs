@@ -21,6 +21,7 @@ var getPost = require('./routes/getPosts');
 var manageBooks= require('./routes/manageBooks');
 var deletePost = require('./routes/deletePost');
 var updatePost = require('./routes/updatePost');
+var recentPost = require('./routes/recentPost');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -78,7 +79,7 @@ app.use('/getAds', authenticate,getPost);
 app.use('/manageBooks',authenticate,manageBooks);
 app.use('/delete',authenticate,deletePost);
 app.use('/update',authenticate,updatePost);
-
+app.use('/recent',authenticate,recentPost);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

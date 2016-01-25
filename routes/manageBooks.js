@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 router.get('/',function(req,res){
   var user_id = req.decoded;
 
-  Post.find({'_creator.id':mongoose.Types.ObjectId(user_id),deleted:false},function(err,docs){
+  Post.find({'_creator.id':mongoose.Types.ObjectId(user_id),deleted:false},null,{sort:{updated_at:-1}},function(err,docs){
     if(err)
     {
       return res.json({success:false,message:"Unknown Error"})
