@@ -10,7 +10,8 @@ var UserSchema = new Schema({
 	password :{type : String, required : true},
 	email : { type: String, required : true},
 	phoneNo:{ type:String, required:true},
-	token : { type: String}
+	token : { type: String},
+  sex:{type:String}
 });
 
 UserSchema.pre('save', function(next) {

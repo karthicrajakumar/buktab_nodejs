@@ -46,7 +46,8 @@ router.post('/',function(req,res){
 				          message: 'Successfully Logged in ',
 				          token: token,
 									email: user.email,
-									phoneNo : user.phoneNo
+									phoneNo : user.phoneNo,
+									sex:user.sex
 								});
 						};
 					});
