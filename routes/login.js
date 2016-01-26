@@ -36,7 +36,7 @@ router.post('/',function(req,res){
 						expiresIn:"365d"
 					});
 
-					
+
 					user.update({token:token},function(err){
 						if(err) {
 							return res.json({success:false , message: "Could Not Save User"});
@@ -44,7 +44,9 @@ router.post('/',function(req,res){
 							return res.json({
 				          success: true,
 				          message: 'Successfully Logged in ',
-				          token: token
+				          token: token,
+									email: user.email,
+									phoneNo : user.phoneNo
 								});
 						};
 					});
