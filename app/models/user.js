@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt-nodejs'),
     SALT_WORK_FACTOR = 10;
-var jwt    = require('jsonwebtoken'); 	
+var jwt    = require('jsonwebtoken');
 
 
 var UserSchema = new Schema({
@@ -44,7 +44,7 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 UserSchema.methods.verifyToken = function(token,cb){
 	if(token)
 	{
-		jwt.verify(token,"karthic", function(err, decoded) {      
+		jwt.verify(token,"karthic", function(err, decoded) {
 	      if (err) {
 	      	console.log(err);
 	        return cb(err);

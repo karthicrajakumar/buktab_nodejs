@@ -6,11 +6,12 @@ var Book = require('../app/models/book');
 var mongoose = require('mongoose');
 
 router.post('/',function(req,res){
-  var user = req.decoded;
+  var user_id = req.decoded;
+  var i = 0;
   var password = req.body.password;
   var phoneNo = req.body.phoneNo;
   var email = req.body.email;
-  User.findOne({_id:mongoose.Types.ObjectId(user)},function(err,user){
+  User.findOne({_id:mongoose.Types.ObjectId(user_id)},function(err,user){
     user.comparePassword(password,function(err,isMatch){
       if(err)
       {
@@ -26,10 +27,17 @@ router.post('/',function(req,res){
         user.save(function(err){
           if(err)
           {
-            return res.json({success:false , message: "Phone  Number Already exists"});
+            return res.json({success:false , message: "Phone Number Already exists"});
           }
           else{
-            return res.json({success:true , message: "Updated Successfully"});
+            Post.find({'_creator.id':mongoose.Types.ObjectId(user_id)},function(err,posts){
+              for(i=0 ;i<posts.length;i++ )
+              {
+                posts[i].set({_creator:{username:posts[i]._creator[0].username,id:posts[i]._creator[0].id,phoneNo:phoneNo,email:email}});
+                posts[i].save();
+              }
+              return res.json({success:true , message: "Updated Successfully"});
+            });
           }
         });
       }

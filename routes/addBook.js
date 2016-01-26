@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require('../app/models/user');
 var Post = require('../app/models/post');
 var Book = require('../app/models/book');
-
+var mongoose = require('mongoose');
 
 
 
@@ -18,7 +18,7 @@ router.post('/',function(req,res){
 		Semester:sem,
 		Price:price,
 		bookDetails:bookid,
-		_creator:userid,
+		creator:userid,
 		location:location,
 
 	});
@@ -37,20 +37,15 @@ router.post('/',function(req,res){
 
 	})
 		User.findById(userid,function(err,user){
-			if(err)
-			{
-				return res.json({success:false,message:"Error"});
-			}
-			else if(user != null){
-
 				post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email}});
-				post.save();
-			}
-		})
+				console.log(user);
+				post.populate('_creator').save();
+			})
+
+
 			return res.json({success:true,message:"Posted Successfully",post:post})
 
-	})
-
+		});
 
 });
 

@@ -11,7 +11,8 @@ var PostSchema = new Schema({
 	Semester: {type : Number, required : true},
 	Price: {type: Number, required:true},
 	bookDetails: [{ type: Schema.Types.Mixed, ref:'Book' ,required:true}],
-	_creator: [{ type: Schema.Types.Mixed, ref:'User',required:true}],
+	_creator:  [{ type: Schema.Types.Mixed, ref: 'User' }],
+
   location:{type:String},
   created_at    : { type: Date },
   updated_at    : { type: Date }
