@@ -12,6 +12,11 @@ router.post('/',function(req,res){
   var phoneNo = req.body.phoneNo;
   var email = req.body.email;
   User.findOne({_id:mongoose.Types.ObjectId(user_id)},function(err,user){
+    if(err)
+    {
+      return res.json({success:false , message: "User not Found"});
+    }
+    else{
     user.comparePassword(password,function(err,isMatch){
       if(err)
       {
@@ -43,6 +48,7 @@ router.post('/',function(req,res){
       }
     })
   });
+ }
 })
 
 

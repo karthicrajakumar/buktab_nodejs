@@ -6,7 +6,7 @@ var Book = require('../app/models/book');
 
 router.get('/',function(req,res){
   Post.find({deleted:false},null,{sort:{updated_at:-1},limit:10},function(err,docs){
-      if(docs.lenght == 0)
+      if(docs.length == 0)
       {
         return res.json({success:false,message:"No recent Books"});
       }
