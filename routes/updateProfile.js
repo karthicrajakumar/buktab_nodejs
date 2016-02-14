@@ -38,7 +38,7 @@ router.post('/',function(req,res){
             Post.find({'_creator.id':mongoose.Types.ObjectId(user_id)},function(err,posts){
               for(i=0 ;i<posts.length;i++ )
               {
-                posts[i].set({_creator:{sex:posts[i]._creator[0].sex,username:posts[i]._creator[0].username,id:posts[i]._creator[0].id,phoneNo:phoneNo,email:email}});
+                posts[i].set({_creator:{sex:posts[i]._creator[0].sex,username:posts[i]._creator[0].username,id:posts[i]._creator[0].id,phoneNo:phoneNo,email:email,hidden:posts[i]._creator[0].hidden}});
                 posts[i].save();
               }
               return res.json({success:true , message: "Updated Successfully"});

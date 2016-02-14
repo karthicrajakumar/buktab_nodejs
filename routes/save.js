@@ -8,7 +8,8 @@ router.post('/', function(req,res) {
 		password : req.body.password,
 		email :req.body.email,
 		phoneNo : req.body.phoneNo,
-		sex:req.body.sex
+		sex:req.body.sex,
+		hidden: req.body.hidden
 
 	});
 

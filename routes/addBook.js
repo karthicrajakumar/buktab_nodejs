@@ -37,7 +37,7 @@ router.post('/',function(req,res){
 
 	})
 		User.findById(userid,function(err,user){
-				post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email,sex:user.sex}});
+				post.set({_creator:{username: user.username,id:user._id,phoneNo:user.phoneNo,email:user.email,sex:user.sex,hidden:posts[i]._creator[0].hidden}});
 				post.populate('_creator').save();
 			})
 
