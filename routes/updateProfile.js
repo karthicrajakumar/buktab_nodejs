@@ -11,6 +11,7 @@ router.post('/',function(req,res){
   var password = req.body.password;
   var phoneNo = req.body.phoneNo;
   var email = req.body.email;
+  var hidden = req.body.hidden;
   User.findOne({_id:mongoose.Types.ObjectId(user_id)},function(err,user){
     if(err)
     {
@@ -29,6 +30,7 @@ router.post('/',function(req,res){
       else {
         user.phoneNo = phoneNo;
         user.email = email;
+        user.hidden = hidden;
         user.save(function(err){
           if(err)
           {
