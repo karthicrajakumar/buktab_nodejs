@@ -23,6 +23,7 @@ var deletePost = require('./routes/deletePost');
 var updatePost = require('./routes/updatePost');
 var recentPost = require('./routes/recentPost');
 var updateProfile = require('./routes/updateProfile');
+var suggestBook = require('./routes/suggestBook');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -82,6 +83,7 @@ app.use('/delete',authenticate,deletePost);
 app.use('/update',authenticate,updatePost);
 app.use('/recent',authenticate,recentPost);
 app.use('/updateProfile',authenticate,updateProfile);
+app.use('/suggestBook',authenticate,suggestBook);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
