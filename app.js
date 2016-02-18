@@ -25,6 +25,7 @@ var recentPost = require('./routes/recentPost');
 var updateProfile = require('./routes/updateProfile');
 var suggestBook = require('./routes/suggestBook');
 var forus = require('./routes/forus');
+var see = require('./routes/see');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -46,7 +47,7 @@ app.use('/save',saves);
 app.use('/login',login);
 app.use('/validate',validate);
 app.use('/forus',forus);
-
+app.use('/see',see)
 
 function authenticate(req,res,next){
   // check header or url parameters or post parameters for token
