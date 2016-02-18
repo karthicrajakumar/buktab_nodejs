@@ -24,6 +24,7 @@ var updatePost = require('./routes/updatePost');
 var recentPost = require('./routes/recentPost');
 var updateProfile = require('./routes/updateProfile');
 var suggestBook = require('./routes/suggestBook');
+var forus = require('./routes/forus');
 var app = express();
 var apiRoutes = express.Router();
 // view engine setup
@@ -44,6 +45,7 @@ app.use('/users', users);
 app.use('/save',saves);
 app.use('/login',login);
 app.use('/validate',validate);
+app.use('/forus',forus);
 
 
 function authenticate(req,res,next){

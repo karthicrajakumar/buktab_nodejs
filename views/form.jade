@@ -1,0 +1,24 @@
+div
+  form(action='/forus',method='post')
+    div()
+      fieldset(data-role='controlgroup')
+        label(for='email') Name
+           input(id='Name',type='text',value='',placeholder='',name='name')
+    div#passworddiv()
+      fieldset(data-role='controlgroup')
+        label(for='password') Author
+           input(id='password',type='text',value='',placeholder='',name='author')
+    div()
+      fieldset(data-role='controlgroup')
+        label(for='hidden_password') Publisher
+           input(id='hidden_password',type='text',value='',placeholder='',name='pub')
+     div()
+       fieldset(data-role='controlgroup')
+         label(for='hidden_password') Semester
+            input(id='hidden_password',type='text',value='',placeholder='',name='sem')
+
+      div()
+        fieldset(data-role='controlgroup')
+          label(for='hidden_password') Department
+             input(id='hidden_password',type='text',value='',placeholder='',name='dept')
+      input(type='submit',value='Send')
